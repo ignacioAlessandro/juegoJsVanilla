@@ -31,41 +31,44 @@ let game =
         this.elements.push(wall.list[key]);
       }
     }
+ 
     powerUps.create("1", 1000, 200, 50, 50, "left");
-    enemy.create('1', 1000, 310,  50, 50,'left');
-    enemy.create('2', 1200, 390,  50, 50,'left');
-    enemy.create('3', 1650, 310,  50, 50,'left');
-    enemy.create('4', 1950, 390,  50, 50,'left');
-    enemy.create('5', 2100, 390,  50, 50,'left');
-    enemy.create('6', 2400, 310,  50, 50,'left');
-    enemy.create('7', 2850, 310,  50, 50,'left');
-    enemy.create('8', 3150, 390,  50, 50,'left');
-    enemy.create('9', 3300, 310,  50, 50,'left');
-    enemy.create('10', 3750, 390,  50, 50,'left');
-    enemy.create('11', 3900, 310,  50, 50,'left');
-    enemy.create('12', 4200, 310,  50, 50,'left');
-    enemy.create('13', 4650, 390,  50, 50,'left');
-    enemy.create('14', 4950, 310,  50, 50,'left');
-    enemy.create('15', 5250, 390,  50, 50,'left');
-    enemy.create('16', 5350, 390,  50, 50,'left');
-    enemy.create('17', 5700, 390,  50, 50,'left');
-    enemy.create('18', 6250, 310,  50, 50,'left');
-    enemy.create('19', 6300, 390,  50, 50,'left');
-    enemy.create('20', 6750, 390,  50, 50,'left');
-    enemy.create('21', 7050, 310,  50, 50,'left');
-    enemy.create('22', 7350, 390,  50, 50,'left');
-    enemy.create('23', 7500, 310,  50, 50,'left');
-    enemy.create('24', 7950, 310,  50, 50,'left');
-    enemy.create('25', 8100, 390,  50, 50,'left');
-    enemy.create('26', 8550, 390,  50, 50,'left');
-    enemy.create('27', 8700, 310,  50, 50,'left');
-    enemy.create('28', 9150, 390,  50, 50,'left');
-    enemy.create('29', 9300, 310,  50, 50,'left');
-    enemy.create('30', 9750, 390,  50, 50,'left');
-    enemy.create('31', 9900, 390,  50, 50,'left');
-    enemy.create('32', 10000, 310,  50, 50,'left');
-    enemy.create('33', 10300, 390,  50, 50,'left');
-    enemy.create('34', 10600, 310,  50, 50,'left');
+    
+    this.randomiseEnemis();
+    // enemy.create('1', 1000, 310,  50, 50,'left');
+    // enemy.create('2', 1200, 390,  50, 50,'left');
+    // enemy.create('3', 1650, 310,  50, 50,'left');
+    // enemy.create('4', 1950, 390,  50, 50,'left');
+    // enemy.create('5', 2100, 390,  50, 50,'left');
+    // enemy.create('6', 2400, 310,  50, 50,'left');
+    // enemy.create('7', 2850, 310,  50, 50,'left');
+    // enemy.create('8', 3150, 390,  50, 50,'left');
+    // enemy.create('9', 3300, 310,  50, 50,'left');
+    // enemy.create('10', 3750, 390,  50, 50,'left');
+    // enemy.create('11', 3900, 310,  50, 50,'left');
+    // enemy.create('12', 4200, 310,  50, 50,'left');
+    // enemy.create('13', 4650, 390,  50, 50,'left');
+    // enemy.create('14', 4950, 310,  50, 50,'left');
+    // enemy.create('15', 5250, 390,  50, 50,'left');
+    // enemy.create('16', 5350, 390,  50, 50,'left');
+    // enemy.create('17', 5700, 390,  50, 50,'left');
+    // enemy.create('18', 6250, 310,  50, 50,'left');
+    // enemy.create('19', 6300, 390,  50, 50,'left');
+    // enemy.create('20', 6750, 390,  50, 50,'left');
+    // enemy.create('21', 7050, 310,  50, 50,'left');
+    // enemy.create('22', 7350, 390,  50, 50,'left');
+    // enemy.create('23', 7500, 310,  50, 50,'left');
+    // enemy.create('24', 7950, 310,  50, 50,'left');
+    // enemy.create('25', 8100, 390,  50, 50,'left');
+    // enemy.create('26', 8550, 390,  50, 50,'left');
+    // enemy.create('27', 8700, 310,  50, 50,'left');
+    // enemy.create('28', 9150, 390,  50, 50,'left');
+    // enemy.create('29', 9300, 310,  50, 50,'left');
+    // enemy.create('30', 9750, 390,  50, 50,'left');
+    // enemy.create('31', 9900, 390,  50, 50,'left');
+    // enemy.create('32', 10000, 310,  50, 50,'left');
+    // enemy.create('33', 10300, 390,  50, 50,'left');
+    // enemy.create('34', 10600, 310,  50, 50,'left');
 
     for (let key in enemy.list)
     {
@@ -91,7 +94,34 @@ let game =
     setInterval(this.update.bind(this), 1000/60);
   },
   
+  randomiseEnemis: function(){
+    for (let counter = 0; counter < 33; counter++) {
+      this.randomisePosEnemi(counter);  
+    }
+  },
 
+  randomisePosEnemi: function(counter){
+      this.counter = counter;
+      this.posX = (1000+(200*this.counter));
+
+      switch (Math.floor(Math.random()*(3-1)+1)) {
+      
+        case 1:
+          enemy.create(`${this.counter}`, this.posX, 310,  50, 50, 'left');
+          console.log(`${this.posX} ${this.counter}`);
+          break;
+          
+        case 2:
+          enemy.create(`${this.counter}`, this.posX, 390,  50, 50,'left');
+          console.log(`${this.posX} ${this.counter}`);
+          break;
+
+        default:
+          console.log("fallo jej");
+          break;
+    }
+     
+  },
 
   pause: function()
   {
@@ -136,6 +166,7 @@ let game =
     if(keyboard.x && this.state === gameStatesEnum.menu)
     {
       this.state = gameStatesEnum.playing;
+     
     }
     this.render();
   },
@@ -165,7 +196,7 @@ let game =
           text.draw('Game Over, Puntos:' + puntos.score, '#000000');
 
           
-          (this.maxPuntos<puntos.score)&&localStorage.setItem("maxPuntuacion",`${puntos.score}`)
+          (this.maxPuntos<puntos.score) && localStorage.setItem("maxPuntuacion",`${puntos.score}`)
 
           
 
